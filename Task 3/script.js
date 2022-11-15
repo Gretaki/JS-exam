@@ -20,10 +20,14 @@ showUsersButton.addEventListener('click', () => {
 });
 
 async function renderUserCards() {
-  const users = await getUsers();
+  try {
+    const users = await getUsers();
 
-  deleteOutputElements();
-  renderOutput(users);
+    deleteOutputElements();
+    renderOutput(users);
+  } catch (error) {
+    alert(error);
+  }
 }
 
 async function getUsers() {
@@ -53,7 +57,7 @@ function renderOutput(users) {
     const login = document.createElement('p');
     image.setAttribute('src', user.avatar_url);
     image.setAttribute('title', user.avatar_url);
-    // card.style.display = "flex";
+    card.style = "width: 200px; margin: 20px; padding: 20px; border-radius: 10px;";
 
     login.innerText = user.login;
 
