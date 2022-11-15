@@ -18,7 +18,7 @@ const form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   updateConversions();
-})
+});
 
 function updateConversions() {
   deleteConversions();
@@ -40,7 +40,7 @@ function deleteConversions() {
 }
 
 function getInput() {
-  const regexForNumbers = /^\d+(\.\d+)?$/
+  const regexForNumbers = /^\d+(\.\d+)?$/;
   const input = document.getElementById('search').value;
 
   const isNumber = regexForNumbers.test(input);
@@ -68,7 +68,7 @@ function renderOutput(convertedValues) {
     newListElement.innerText = value;
     newListElement.style.fontSize = "1.1em";
     return newListElement;
-  })
+  });
 
   newList.append(...newElements);
   output.appendChild(newList);
