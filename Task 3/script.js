@@ -12,3 +12,56 @@ būti stilizuota su CSS ir būti responsive;
 -------------------------------------------------------------------------- */
 
 const ENDPOINT = 'https://api.github.com/users';
+
+const showUsersButton = document.getElementById('btn');
+
+showUsersButton.addEventListener('click', () => {
+  renderUserCards();
+});
+
+async function renderUserCards() {
+  try {
+    const users = await getUsers();
+
+    deleteOutputElements();
+    renderOutput(users);
+  } catch (error) {
+    alert(error);
+  }
+}
+
+async function getUsers() {
+  const response = await fetch(ENDPOINT)
+    .then(response => response.json());
+
+  const data = response.map(element => ({
+    login: element.login,
+    avatar_url: element.avatar_url
+  }));
+
+  return data;
+}
+
+function deleteOutputElements() {
+  const outputChildren = document.querySelectorAll('#output > *');
+  outputChildren.forEach(child => child.remove());
+}
+
+function renderOutput(users) {
+  const output = document.getElementById('output');
+
+  for (const user of users) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    const image = document.createElement('img');
+    const login = document.createElement('p');
+    image.setAttribute('src', user.avatar_url);
+    image.setAttribute('title', user.avatar_url);
+    card.style = "width: 200px; margin: 20px; padding: 20px; border-radius: 10px;";
+
+    login.innerText = user.login;
+
+    card.append(image, login);
+    output.appendChild(card);
+  }
+}
