@@ -19,7 +19,7 @@ class Movie {
 
   wasExpensive() {
     // daugiau nei 100 000 000 mln USD
-    return this.budget > 100000000000000;
+    return this.budget > 1E14;
   }
 
 }

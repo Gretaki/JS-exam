@@ -21,6 +21,8 @@ function Calculator() {
   };
 
   this.division = function (numberA, numberB) {
+    if (numberB === 0) throw new Error("Cannot divide by zero");
+    
     return numberA / numberB;
   };
 }

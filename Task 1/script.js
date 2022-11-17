@@ -45,11 +45,9 @@ function getInput() {
 
   const isNumber = regexForNumbers.test(input);
 
-  if (!isNumber) {
-    return null;
-  }
+  const result = isNumber ? parseFloat(input) : null;
 
-  return parseFloat(input);
+  return result;
 }
 
 function convert(input, conversions) {
